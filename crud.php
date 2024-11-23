@@ -3,7 +3,7 @@ session_start();
 class Crud
 {
     private $conn;
-    private $db_name = "PneuTrackDB";
+    private $db_name = "pneutrackdb";
     private $id;
     public function __construct($db)
     {
@@ -16,7 +16,7 @@ class Crud
 
     public function read()
     {
-        $query = "SELECT * FROM " . $this->db_name . "." . "table-name";
+        $query = "SELECT * FROM pneutrackdb.user";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         return $stmt;

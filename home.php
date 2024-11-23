@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style2.css">
     <title>Login Screen</title>
 </head>
 <body>
@@ -56,55 +56,8 @@
             </div>
 
             <?php # php openning
-            if (isset($_POST['subButton'])){           #
-                if($_POST['loginText'] != ""){         # Checking if the textboxes are filled
-                    if($_POST['passwordText'] != ""){  #
-                        #write the code here
-                        
-                        $crud = new Crud($db);
-                        $result = $crud->read();
-
-                        $user = $_POST['loginText'];
-                        $pass = $_POST['passwordText'];
-
-                        if ($result) {
-                            $found = false;
-                            // Use um loop para iterar sobre os resultados obtidos com o PDO
-                            if ($user == "admin1" && $pass == "admin1") {
-                                echo '<script type="text/javascript"> window.location.href="homeADM.php"; </script>';
-                            } else {
-                                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                                    $login = $row['name'];
-                                    $senha = $row['password'];
-                                    if ($login == $user && $senha == $pass) {
-                                        if (session_status() !== PHP_SESSION_ACTIVE) {
-                                            session_start();
-                                        }
-                                        $_SESSION['username'] = $login;
-                                        $found = true;
-                                        echo '<script type="text/javascript"> window.location.href="home.php"; </script>';
-                                        echo "found";
-                                        break;
-                                    }
-                                }
-                                if (!$found) {
-                                    echo '<script>alert("Verifique suas credenciais e tente novamente");</script>';
-                                } else {
-                                    // Trate o caso em que a consulta não retornou resultados
-                                    echo "Nenhum resultado encontrado.";
-                                }
-                            }
-                        }
-
-
-                    }else{                                                          #
-                        echo '<script>alert("Favor inserir sua senha");</script>';  #
-                    }                                                               # Popping a message if 
-                }else{                                                              # the boxes aren't filled
-                    echo '<script>alert("Favor inserir seu e-mail");</script>';     #
-                }                                                                   #
-            }
             
+                
 
             ?> <!-- php closing -->
 
