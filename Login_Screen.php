@@ -25,9 +25,6 @@
 <!--              Desktop HTML                 -->
     <form id="formMainPc" method="post">
         <div id="mainPc">
-            <div id="mainText">
-               <p>Welcome PC user!</p>
-            </div>
             <!-- title div -->
             <div id="title">
                 <img id="pneu_home" src="./img/pneu_homescreen.png" alt="">
@@ -42,7 +39,7 @@
                     <img src="./img/profileImg.png" alt="" id="inputImg">
                     <div class="textarea" id="textarea1">
                     <p id="login">Login</p>
-                        <input type="text" name="loginText" id="login" class="inputText" placeholder="Insira seu E-mail" required>
+                        <input type="text" name="loginText" id="login" class="inputText" placeholder="Insira seu E-mail" required autofocus>
                     </div>
                     <div class="textarea">
                         <p id="pass">Senha</p>

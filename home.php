@@ -25,9 +25,6 @@
 <!--              Desktop HTML                 -->
     <form id="formMainPc" method="post">
         <div id="mainPc">
-            <div id="mainText">
-               <p>Welcome PC user!</p>
-            </div>
             <!-- title div -->
             <div id="title">
                 <img id="pneu_home" src="./img/pneu_homescreen.png" alt="">
@@ -39,15 +36,59 @@
             <!--input div -->
             <div id="inputs">
                 <div id="inputsSubdiv">
-                    <img src="./img/profileImg.png" alt="" id="inputImg">
-                    <div class="textarea" id="textarea1">
-                    <p id="login">Login</p>
-                        <input type="text" name="loginText" id="login" class="inputText" placeholder="Insira seu E-mail" required>
+
+                <div id="inputTitle">
+                    <h1>Cadastro de Pneu</h1>
+                </div>
+<!------------------------------------------------------------------------------------------------->
+                <div id="input1">
+                    <div class="input1div">
+                        <label for="motoristaText">Motorista</label>
+                        <input type="text" name="" id="motoristaText">
                     </div>
-                    <div class="textarea">
-                        <p id="pass">Senha</p>
-                        <input type="text" name="passwordText" id="password" class="inputText" placeholder="Insira sua Senha" required>
+
+                    <div class="input1div">
+                        <label for="motoristaText">Modelo</label>
+                        <input type="text" name="" id="modeloText" >
                     </div>
+
+                    <div class="input1div">
+                        <label for="motoristaText">Placa</label>
+                        <input type="text" name="" id="placatext" >
+                    </div>
+                </div>
+<!------------------------------------------------------------------------------------------------->
+                <div id="input2">
+                    <div class="input2div">
+                        <label for="motoristaText">Eixos</label>
+                        <input type="text" name="" id="eixoText">
+                    </div>
+
+                    <div class="input2div">
+                        <label for="motoristaText">Peso</label>
+                        <input type="text" name="" id="pesoText">
+                    </div>
+
+                    <div class="input2div">
+                        <label for="motoristaText">Técnico</label>
+                        <input type="text" name="" id="tecnicoText">
+                    </div>
+
+                    <div class="input2div">
+                        <label for="motoristaText">Data</label>
+                        <input type="datetime" name="" id="data" >
+                    </div>
+                </div>
+<!------------------------------------------------------------------------------------------------->
+            <div id="eixo">
+                <?php for ($i = 0; $i < 15; $i++) { ?>
+                    <div class="eixoSubiv" id='<?php echo $i ?>'>
+                        <?php echo "xD"; ?>
+                        <label>Pneu 1 Eixo</label>
+                    </div>
+                <?php } ?>
+</div>
+<!------------------------------------------------------------------------------------------------->
                     <div id="submitDiv">
                         <input type="submit" id="subButton" name="subButton">
                     </div>
