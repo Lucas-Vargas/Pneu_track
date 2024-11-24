@@ -204,10 +204,49 @@ body {
     #mainPc{
         display: none;
     }
+    #formMainPc{
+        display: none;
+    }
+    #mainText p{
+        display: none;
+    
+    }
+    #mainText{
+        display: none;
+    }
     #mainMobile{
-        display: block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         height: 100vh;
         width: 100vw;
     }
-
+    #submitDiv{
+        margin-top: 50px;
+        height: 10vh;
+        width: 25vw;
+        display: flex;
+        font-size: medium;
+        justify-content: center;
+        align-items: center;
+    }
+    #inputs{
+        width: 100%;
+    }
+    #inputsSubdiv{
+        width: 90%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .textarea input{
+        font-family: "Poppins", sans-serif;
+        height: 40px;
+        font-size: 80%;
+    }
+    #subButton{
+        font-family: "Poppins", sans-serif;
+        height: 40px;
+        font-size: 100%;
+    }
 }

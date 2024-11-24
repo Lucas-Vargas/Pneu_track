@@ -43,7 +43,7 @@
                     </div>
                     <div class="textarea">
                         <p id="pass">Senha</p>
-                        <input type="text" name="passwordText" id="password" class="inputText" placeholder="Insira sua Senha" required>
+                        <input type="password" name="passwordText" id="password" class="inputText" placeholder="Insira sua Senha" required>
                     </div>
                     <div id="submitDiv">
                         <input type="submit" id="subButton" name="subButton">
@@ -52,6 +52,99 @@
 
             </div>
 
+            <?php # php openning
+            if (isset($_POST['subButton'])){           #
+                if($_POST['loginText'] != ""){         # Checking if the textboxes are filled
+                    if($_POST['passwordText'] != ""){  #
+                        #write the code here
+                        
+                        $crud = new Crud($db);
+                        $result = $crud->read();
+
+                        $user = $_POST['loginText'];
+                        $pass = $_POST['passwordText'];
+
+                        if ($result) {
+                            $found = false;
+                            // Use um loop para iterar sobre os resultados obtidos com o PDO
+                            if ($user == "admin1" && $pass == "admin1") {
+                                echo '<script type="text/javascript"> window.location.href="homeADM.php"; </script>';
+                            } else {
+                                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                                    $login = $row['name'];
+                                    $senha = $row['password'];
+                                    
+                                    if ($login == $user && $senha == $pass) {
+                                        if (session_status() !== PHP_SESSION_ACTIVE) {
+                                            session_start();
+                                        }
+                                        $_SESSION['username'] = $login;
+                                        $found = true;
+                                        echo '<script type="text/javascript"> window.location.href="home.php"; </script>';
+                                        echo "found";
+                                        break;
+                                    }
+                                }
+                                if (!$found) {
+                                    echo '<script>alert("Verifique suas credenciais e tente novamente");</script>';
+                                } else {
+                                    // Trate o caso em que a consulta não retornou resultados
+                                    echo "Nenhum resultado encontrado.";
+                                }
+                            }
+                        }
+
+
+                    }else{                                                          #
+                        echo '<script>alert("Favor inserir sua senha");</script>';  #
+                    }                                                               # Popping a message if 
+                }else{                                                              # the boxes aren't filled
+                    echo '<script>alert("Favor inserir seu e-mail");</script>';     #
+                }                                                                   #
+            }
+            
+
+            ?> <!-- php closing -->
+
+
+        </div>
+    </form>
+
+
+<!--
+╭━━━━-╮
+╰┃ ┣▇━▇
+ ┃ ┃  ╰━▅╮ 
+ ╰┳╯ ╰━━┳╯
+  ╰╮ ┳━━╯      DEIXA YASUO OPEN
+ ▕▔▋ ╰╮ ╭━╮ RAPAZIADA TMJ 
+╱▔╲▋╰━┻┻╮╲╱▔▔▔▔▔╲
+▏  ▔▔▔▔▔▔▔  O O┃ 
+╲╱▔╲▂▂▂▂╱▔╲▂▂▂╱
+ ▏╳▕▇▇▕ ▏╳▕▇▇▕
+ ╲▂╱╲▂╱    ╲▂╱╲▂╱    
+-->
+
+
+<!---              Mobile HTML-                -->
+<form id="mainMobile" method="post">
+            <!--input div -->
+            <div id="inputs">
+                <div id="inputsSubdiv">
+                    <img src="./img/profileImg.png" alt="" id="inputImg">
+                    <div class="textarea" id="textarea1">
+                    <p id="login">Login</p>
+                        <input type="text" name="loginText" id="login" class="inputText" placeholder="Insira seu E-mail" required>
+                    </div>
+                    <div class="textarea">
+                        <p id="pass">Senha</p>
+                        <input type="text" name="passwordText" id="password" class="inputText" placeholder="Insira sua Senha" required>
+                    </div>
+                    <div id="submitDiv">
+                        <input type="submit" id="subButton" name="subButton">
+                    </div>
+                </div>
+        </div>    
             <?php # php openning
             if (isset($_POST['subButton'])){           #
                 if($_POST['loginText'] != ""){         # Checking if the textboxes are filled
@@ -108,29 +201,5 @@
 
         </div>
     </form>
-
-
-<!--
-╭━━━━-╮
-╰┃ ┣▇━▇
- ┃ ┃  ╰━▅╮ 
- ╰┳╯ ╰━━┳╯
-  ╰╮ ┳━━╯      DEIXA YASUO OPEN
- ▕▔▋ ╰╮ ╭━╮ RAPAZIADA TMJ 
-╱▔╲▋╰━┻┻╮╲╱▔▔▔▔▔╲
-▏  ▔▔▔▔▔▔▔  O O┃ 
-╲╱▔╲▂▂▂▂╱▔╲▂▂▂╱
- ▏╳▕▇▇▕ ▏╳▕▇▇▕
- ╲▂╱╲▂╱    ╲▂╱╲▂╱    
--->
-
-
-<!---              Mobile HTML-                -->
-    <div id="mainMobile">
-        <div id="mainText">
-            <p>Welcome Mobile user!</p>
-        </div>
-    </div>
-    
 </body>
 </html>

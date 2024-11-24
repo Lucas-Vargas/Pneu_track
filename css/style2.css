@@ -1,6 +1,8 @@
 *{
     margin: 0;
     padding: 0;
+    font-family: "Poppins", sans-serif;
+
 }
 body {
     display: flex;
@@ -215,19 +217,35 @@ body {
 #eixo{
     height: 50%;
     width: 80%;
-    background-color: brown;
     display: flex;
-    overflow: scroll;
+    overflow-x: scroll;
+    overflow-y: hidden;
+
 }
-.eixoSubiv{
-    height: 100%;
-    width: auto;
-    background-color: rgb(165, 165, 165);
-    border-style: solid ;
+.eixoSubDiv{
+    height: 95%;
+    padding: 1% 2% 1% 2%;
+    border: 1px solid black ;
+    font-size: 25px;
+}
+#kmTextDiv{
+    margin-top: 20%;
+}
+
+#recapTextDiv{
+    margin-top: 20%;
+}
+.eixoInputDiv{
+    font-size: 20px;
+    font-weight: bold;
+}
+.eixoSubDiv input{
+    font-size: 20px;
+    border-radius: 10px;
 }
 
 
-
+/* não sei oq eu to fazendo, se fico podre me perdoa. Eu tentei*/
 
 
 
@@ -258,6 +276,12 @@ body {
 #inputTitle{
     background-color: rgb(98, 98, 252);
 }
+.eixoSubDiv{
+    background-color: rgb(165, 165, 165);
+}
+#eixo{
+    background-color: brown;
+}
 
 /*  Mobile CSS 
 
@@ -281,7 +305,7 @@ body {
 
 
 */
-@media only screen and (max-width: 768px){
+@media only screen and (max-width: 1080px){
     #mainPc{
         display: none;
     }
@@ -290,5 +314,10 @@ body {
         height: 100vh;
         width: 100vw;
     }
+
+
+    /* fazer css do mobile :) */
+
+
 
 }

@@ -82,9 +82,20 @@
 <!------------------------------------------------------------------------------------------------->
             <div id="eixo">
                 <?php for ($i = 0; $i < 15; $i++) { ?>
-                    <div class="eixoSubiv" id='<?php echo $i ?>'>
-                        <?php echo "xD"; ?>
-                        <label>Pneu 1 Eixo</label>
+                    <div class="eixoSubDiv" id='<?php echo $i ?>'>
+                        <?php ?>
+
+                        <label id="titleEixo">Pneu 1 Eixo 1</label>
+
+                        <div id="kmTextDiv" class="eixoInputDiv">
+                            <label for="kmText">Quilometragem</label>
+                            <input type="number" name="" id="kmText">
+                        </div>
+
+                        <div id="recapTextDiv" class="eixoInputDiv">
+                            <label for="recapText">Nº de recapagens</label>
+                            <input type="number" name="" id="recapText">
+                        </div>
                     </div>
                 <?php } ?>
 </div>
