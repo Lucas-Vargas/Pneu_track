@@ -338,6 +338,9 @@ body {
     #mainText{
         display: none;
     }
+    #title{
+        display: none;
+    }
     #mainMobile{
         background-image: linear-gradient(rgb(200,200,200), rgb(200,200,200), rgb(50,50,50));   
         display: flex;
@@ -451,5 +454,14 @@ body {
     }
     #inputTitle{
         align-self: center;
+    }
+    #eixoMobile{
+        height: 50%;
+        width: 80%;
+        display: flex;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        background-color: rgb(158, 158, 158);
+        border: 2px solid black;
     }
 }

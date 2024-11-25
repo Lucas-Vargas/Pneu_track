@@ -41,15 +41,19 @@
 
                     <a href="perfil.php"><button class="btnMenu">
                             <h1>Perfil</h1>
-                    </button></a>
+                        </button></a>
 
                     <a href="home.php"><button class="btnMenu">
-                        <h1>Cadastrar manutenção</h1>
-                    </button></a>
+                            <h1>Cadastrar manutenção</h1>
+                        </button></a>
+
+                    <a href="pneusCadastrados.php"><button class="btnMenu">
+                            <h1>lista de manutenções</h1>
+                        </button></a>
 
                     <a href="logout.php"><button class="btnMenu">
-                        <h1>Sair</h1>
-                    </button></a>
+                            <h1>Sair</h1>
+                        </button></a>
 
 
                 </div>
@@ -86,37 +90,41 @@
 
 
     <div id="containerMobile">
-        
-            <!-- title div -->
-            <div id="title">
-                <img id="pneu_home" src="./img/pneu_homescreen.png" alt="">
-                <nobr>
-                    <h1 class="titleText" id="mainTitle">Pneu track</h1> </br>
-                    <h2 class="titleText" id="subtitle">Gestão de Pneus</h2>
-                </nobr>
-            </div>
-            <!--input div -->
-            <div id="container">
-                <div id="menu">
+
+        <!-- title div -->
+        <div id="title">
+            <img id="pneu_home" src="./img/pneu_homescreen.png" alt="">
+            <nobr>
+                <h1 class="titleText" id="mainTitle">Pneu track</h1> </br>
+                <h2 class="titleText" id="subtitle">Gestão de Pneus</h2>
+            </nobr>
+        </div>
+        <!--input div -->
+        <div id="container">
+            <div id="menu">
 
                 <a href="perfil.php"><button class="btnMenu">
-                            <h1>Perfil</h1>
+                        <h1>Perfil</h1>
                     </button></a>
 
-                    <a href="home.php"><button class="btnMenu">
+                <a href="home.php"><button class="btnMenu">
                         <h1>Cadastrar manutenção</h1>
                     </button></a>
 
-                    <a href="logout.php"><button class="btnMenu">
+                <a href="pneusCadastrados.php"><button class="btnMenu">
+                        <h1>lista de manutenções</h1>
+                    </button></a>
+
+                <a href="logout.php"><button class="btnMenu">
                         <h1>Sair</h1>
                     </button></a>
 
 
-                </div>
-
             </div>
 
-       
+        </div>
+
+
 
 </body>
 

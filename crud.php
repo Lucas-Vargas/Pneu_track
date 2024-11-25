@@ -47,6 +47,20 @@ class Crud
         return $stmt;
     }
 
+    public function readPneus()
+    {
+        $query = "SELECT * FROM pneutrackdb.truck as t join pneutrackdb.tire as p, pneutrackdb.recapdate r;";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        return $stmt;
+    }
+    
+    public function removerTruck($plate)
+    {
+        $query = "DELETE FROM pneutrackdb.truck WHERE plate='$plate'";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute() or die(error_log($stmt));
+    }
 
 
 } # end of the class

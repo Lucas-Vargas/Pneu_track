@@ -212,6 +212,13 @@ if (isset($_POST['subButton'])){
 <form id="mainMobile" method="post">
         <div id="mainMob">
             <!-- title div -->
+            <div id="title">
+                <img id="pneu_home" src="./img/pneu_homescreen.png" alt="">
+                <nobr>
+                    <h1 class="titleText" id="mainTitle">Pneu track</h1> </br>
+                    <h2 class="titleText" id="subtitle">Gestão de Pneus</h2>
+                </nobr>
+            </div>
             <!--input div -->
             <div id="inputs">
                 <div id="inputsSubdiv">
@@ -238,7 +245,7 @@ if (isset($_POST['subButton'])){
                 <div id="input5">
                     <div class="input4div">
                         <label for="motoristaText">Eixos</label>
-                        <input type="text" name="" id="eixoTextMob">
+                        <input type="text" name="" id="eixoText">
                     </div>        
                     <div class="input5div">
                         <label for="motoristaText">Peso</label>
@@ -256,61 +263,8 @@ if (isset($_POST['subButton'])){
                     </div>
                 </div>  
 <!------------------------------------------------------------------------------------------------->
-<div id="eixoMobile">
-<script>
-    var myTextbox = document.getElementById('eixoTextMob');
-    var numEixos = myTextbox.value;
-    myTextbox.onchange = function() {
-        numEixos = myTextbox.value;
-        let eixoCount = 0;
-        for (let i = 1; i < (numEixos * 2 + 1); i++) {
-            const div = document.createElement("div");
-            div.classList.add("eixoSubDiv");
-            div.id = `segmento-${i}`;
-
-            const label = document.createElement("label");
-            label.id = "titleEixo";
-
-            if (i % 2 != 0) {
-                eixoCount++;
-            }
-            label.textContent = `Pneu ${(i + 1) % 2 + 1} Eixo ${eixoCount}`;
-
-            div.appendChild(label);
-
-            const kmDiv = document.createElement("div");
-            kmDiv.classList.add("eixoInputDiv");
-            const kmLabel = document.createElement("label");
-            kmLabel.setAttribute("for", "kmText");
-            kmLabel.textContent = "Quilometragem";
-            const kmInput = document.createElement("input");
-            kmInput.setAttribute('required','');
-            kmInput.type = "number";
-            kmInput.classList.add("kmText");
-            kmInput.name = "kmText" + i;
-            kmDiv.appendChild(kmLabel);
-            kmDiv.appendChild(kmInput);
-
-            const recapDiv = document.createElement("div");
-            recapDiv.classList.add("eixoInputDiv");
-            const recapLabel = document.createElement("label");
-            recapLabel.setAttribute("for", "recapText" + i); 
-            recapLabel.textContent = "Nº de recapagens";
-            const recapInput = document.createElement("input");
-            recapInput.setAttribute('required','')
-            recapInput.type = "number";
-            recapInput.id = "recapText" + i;  
-            recapInput.name = "recapText" + i; 
-            recapDiv.appendChild(recapLabel);
-            recapDiv.appendChild(recapInput);
-
-            div.appendChild(kmDiv);
-            div.appendChild(recapDiv);
-
-            document.getElementById("eixoMobile").appendChild(div);
-        }
-    };
-</script>
+<div id="eixo">
+    
 </div>
 
 <!------------------------------------------------------------------------------------------------->
