@@ -22,24 +22,30 @@ class Crud
         return $stmt;
     }
 
-    public function readTarefa($login)
+
+    public function insertTruck($driver, $model, $plate, $axels, $weight, $tecnico)
     {
-        $query = "SELECT id FROM trabfinal.usuario WHERE login = :login";
+        $query = "INSERT into pneutrackdb.truck (`plate`, `model`, `driver`, `axels`, `weight`) VALUES (:plate, :model, :driver, :axels, :weight);";
         $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':login', $login);
+        $stmt->bindParam(':plate', $plate);
+        $stmt->bindParam(':model', $model);
+        $stmt->bindParam(':driver', $driver);
+        $stmt->bindParam(':axels', $axels);
+        $stmt->bindParam(':weight', $weight);
         $stmt->execute();
-
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        $login2 = $row["id"];
-
-        $query = "SELECT * FROM " . $this->db_name . ".tarefa WHERE usuario_id = :usuario_id";
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':usuario_id', $login2);
-        $stmt->execute();
-
         return $stmt;
     }
 
+    public function insertTire($km, $recap, $truckfk)
+    {
+        $query = "INSERT into pneutrackdb.tire (`km`, `Recap`, `truckFk`) VALUES (:km, :recap, :truckfk);";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':km', $km);
+        $stmt->bindParam(':recap', $recap);
+        $stmt->bindParam(':truckfk', $truckfk);
+        $stmt->execute();
+        return $stmt;
+    }
 
 
 

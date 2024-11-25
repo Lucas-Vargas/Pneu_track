@@ -16,7 +16,7 @@
     include_once("./db/config.php");
     include_once("./db/setDb.php");
     include_once("./crud.php");
-    if (session_status() !== PHP_SESSION_ACTIVE) {
+    if (session_status() != PHP_SESSION_ACTIVE) {
         session_start();
     }
 ?>
@@ -44,61 +44,101 @@
                 <div id="input1">
                     <div class="input1div">
                         <label for="motoristaText">Motorista</label>
-                        <input type="text" name="" id="motoristaText">
+                        <input type="text" name="driverText" id="motoristaText" required>
                     </div>
 
                     <div class="input1div">
                         <label for="motoristaText">Modelo</label>
-                        <input type="text" name="" id="modeloText" >
+                        <input type="text" name="modeloText" id="modeloText" required>
                     </div>
 
                     <div class="input1div">
                         <label for="motoristaText">Placa</label>
-                        <input type="text" name="" id="placatext" >
+                        <input type="text" name="placaText" id="placatext" required>
                     </div>
                 </div>
 <!------------------------------------------------------------------------------------------------->
                 <div id="input2">
                     <div class="input2div">
-                        <label for="motoristaText">Eixos</label>
-                        <input type="text" name="" id="eixoText">
+                            <label for="motoristaText">Eixos</label>
+                            <input type="number" id="eixoText" name="eixoText" required>                            
                     </div>
 
                     <div class="input2div">
                         <label for="motoristaText">Peso</label>
-                        <input type="text" name="" id="pesoText">
+                        <input type="text" name="pesoText" id="pesoText" required>
                     </div>
 
                     <div class="input2div">
                         <label for="motoristaText">Técnico</label>
-                        <input type="text" name="" id="tecnicoText">
+                        <input type="text" name="tecnicoText" id="tecnicoText" required>
                     </div>
 
                     <div class="input2div">
                         <label for="motoristaText">Data</label>
-                        <input type="datetime" name="" id="data" >
+                        <input type="date" name="dateText" id="data" required>
                     </div>
                 </div>
 <!------------------------------------------------------------------------------------------------->
-            <div id="eixo">
-                <?php for ($i = 0; $i < 15; $i++) { ?>
-                    <div class="eixoSubDiv" id='<?php echo $i ?>'>
-                        <?php ?>
 
-                        <label id="titleEixo">Pneu 1 Eixo 1</label>
+<div id="eixo">
+<script>
+    var myTextbox = document.getElementById('eixoText');
+    var numEixos = myTextbox.value;
+    myTextbox.onchange = function() {
+        numEixos = myTextbox.value;
+        let eixoCount = 0;
+        for (let i = 1; i < (numEixos * 2 + 1); i++) {
+            const div = document.createElement("div");
+            div.classList.add("eixoSubDiv");
+            div.id = `segmento-${i}`;
 
-                        <div id="kmTextDiv" class="eixoInputDiv">
-                            <label for="kmText">Quilometragem</label>
-                            <input type="number" name="" id="kmText">
-                        </div>
+            const label = document.createElement("label");
+            label.id = "titleEixo";
 
-                        <div id="recapTextDiv" class="eixoInputDiv">
-                            <label for="recapText">Nº de recapagens</label>
-                            <input type="number" name="" id="recapText">
-                        </div>
-                    </div>
-                <?php } ?>
+            if (i % 2 != 0) {
+                eixoCount++;
+            }
+            label.textContent = `Pneu ${(i + 1) % 2 + 1} Eixo ${eixoCount}`;
+
+            div.appendChild(label);
+
+            const kmDiv = document.createElement("div");
+            kmDiv.classList.add("eixoInputDiv");
+            const kmLabel = document.createElement("label");
+            kmLabel.setAttribute("for", "kmText");
+            kmLabel.textContent = "Quilometragem";
+            const kmInput = document.createElement("input");
+            kmInput.setAttribute('required','');
+            kmInput.type = "number";
+            kmInput.classList.add("kmText");
+            kmInput.name = "kmText" + i;
+            kmDiv.appendChild(kmLabel);
+            kmDiv.appendChild(kmInput);
+
+            const recapDiv = document.createElement("div");
+            recapDiv.classList.add("eixoInputDiv");
+            const recapLabel = document.createElement("label");
+            recapLabel.setAttribute("for", "recapText" + i); 
+            recapLabel.textContent = "Nº de recapagens";
+            const recapInput = document.createElement("input");
+            recapInput.setAttribute('required','')
+            recapInput.type = "number";
+            recapInput.id = "recapText" + i;  
+            recapInput.name = "recapText" + i; 
+            recapDiv.appendChild(recapLabel);
+            recapDiv.appendChild(recapInput);
+
+            div.appendChild(kmDiv);
+            div.appendChild(recapDiv);
+
+            document.getElementById("eixo").appendChild(div);
+        }
+    };
+</script>
+
 </div>
+
 <!------------------------------------------------------------------------------------------------->
                     <div id="submitDiv">
                         <input type="submit" id="subButton" name="subButton">
@@ -107,15 +147,50 @@
 
             </div>
 
-            <?php # php openning
-            
-                
-
-            ?> <!-- php closing -->
-
 
         </div>
-    </form>
+    </form> 
+    <?php # php openning
+
+if (isset($_POST['subButton'])){           
+    include_once "./db/config.php";
+    include_once "./db/setDb.php";
+    include_once "./crud.php";
+            
+    $crud = new Crud($db);
+
+    $driver = $_POST['driverText'];
+    $model = $_POST['modeloText'];
+    $plate = $_POST['placaText'];
+    $axels = $_POST['eixoText'];
+    $weight = $_POST['pesoText'];
+    $tecnico = $_POST['tecnicoText'];
+    $date = $_POST['dateText'];
+
+    $crud->insertTruck($driver, $model, $plate, $axels, $weight, $tecnico);
+    echo'<script>alert("enviado para o banco de dados")</script>';
+    $count = 1;
+    while(True){
+        try{
+            $km = $_POST['kmText'. $count];
+            $recap = $_POST['recapText'. $count];
+            echo'<script>alert("'.$km.'")</script>';
+            if($km == "" || $km == null || $recap == "" || $recap == null){
+                echo'<script>alert("algum valor nulo")</script>';
+                echo '<script type="text/javascript"> window.location.href="mainMenu.php"; </script>';
+                break;
+            }else{
+                $crud->insertTire($km, $recap, $plate);
+                echo'<script>alert("Inserido o pneu com '.$km.'km no banco")</script>';
+                $count++;
+            }
+
+        }catch(Exception $e){
+            break;
+        }
+    }
+}
+            ?> <!-- php closing -->
 
 
 <!--
@@ -134,11 +209,79 @@
 
 
 <!---              Mobile HTML-                -->
-    <div id="mainMobile">
-        <div id="mainText">
-            <p>Welcome Mobile user!</p>
-        </div>
-    </div>
+<form id="mainMobile" method="post">
+        <div id="mainMob">
+            <!-- title div -->
+            <div id="title">
+                <img id="pneu_home" src="./img/pneu_homescreen.png" alt="">
+                <nobr>
+                    <h1 class="titleText" id="mainTitle">Pneu track</h1> </br>
+                    <h2 class="titleText" id="subtitle">Gestão de Pneus</h2>
+                </nobr>
+            </div>
+            <!--input div -->
+            <div id="inputs">
+                <div id="inputsSubdiv">
+
+                <div id="inputTitle">
+                    <h1>Cadastro de Pneu</h1>
+                </div>
+<!------------------------------------------------------------------------------------------------->       
+                <div id="input4">
+                    <div class="input4div">
+                        <label for="motoristaText">Motorista</label>
+                        <input type="text" name="" id="motoristaText">
+                    </div>   
+                    <div class="input5div">
+                        <label for="motoristaText">Modelo</label>
+                        <input type="text" name="" id="modeloText" >
+                    </div>     
+                    <div class="input6div">
+                        <label for="motoristaText">Placa</label>
+                        <input type="text" name="" id="placatext" >
+                    </div>
+                </div>
+<!------------------------------------------------------------------------------------------------->
+                <div id="input5">
+                    <div class="input4div">
+                        <label for="motoristaText">Eixos</label>
+                        <input type="text" name="" id="eixoText">
+                    </div>        
+                    <div class="input5div">
+                        <label for="motoristaText">Peso</label>
+                        <input type="text" name="" id="pesoText">
+                    </div>    
+                </div>
+                <div id="input6">    
+                    <div class="input4div">
+                        <label for="motoristaText">Técnico</label>
+                        <input type="text" name="" id="tecnicoText">
+                    </div>        
+                    <div class="input5div">
+                        <label for="motoristaText">Data</label>
+                        <input type="datetime" name="" id="data" >
+                    </div>
+                </div>  
+<!------------------------------------------------------------------------------------------------->
+<div id="eixo">
     
+</div>
+
+<!------------------------------------------------------------------------------------------------->
+                    <div id="submitDiv">
+                        <input type="submit" id="subButton" name="subButton">
+                    </div>
+                </div>
+
+            </div>
+
+            <?php # php openning
+            
+                
+
+            ?> <!-- php closing -->
+
+        </div>
+    </form>
 </body>
 </html>

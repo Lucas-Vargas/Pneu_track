@@ -141,6 +141,8 @@ body {
     display: flex;
     align-items: center;
     flex-direction: column;
+    border: 1px solid black;
+
 }
 .textarea{
     font-family: "Poppins", sans-serif;
@@ -188,6 +190,7 @@ body {
 #input1 input{
     height: 30%;
     border-radius: 10px;
+    width: 100%;
 }
 #input2 input{
     height: 30%;
@@ -202,17 +205,31 @@ body {
 }
 .input1div{
     height: 100%;
-    width: auto;
+    width: 31%;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
+.input1div label{
+    font-size: 20px;
+    font-weight: bold;
+}
+.input1div input{
+    font-size: 20px;
+}
 .input2div{
     height: 100%;
-    width: auto;
+    width: 23%;
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+.input2div label{
+    font-size: 20px;
+    font-weight: bold;
+}
+.input2div input{
+    font-size: 20px;
 }
 #eixo{
     height: 50%;
@@ -220,7 +237,8 @@ body {
     display: flex;
     overflow-x: scroll;
     overflow-y: hidden;
-
+    background-color: rgb(158, 158, 158);
+    border: 2px solid black;
 }
 .eixoSubDiv{
     height: 95%;
@@ -238,7 +256,9 @@ body {
 .eixoInputDiv{
     font-size: 20px;
     font-weight: bold;
+    margin-top: 40px;
 }
+
 .eixoSubDiv input{
     font-size: 20px;
     border-radius: 10px;
@@ -252,10 +272,10 @@ body {
 
 /*Apagar dps*/
 
-#inputsSubdiv{
+/* #inputsSubdiv{
     background-color: rgba(100, 100, 255, .5);
 }
-#title{
+ #title{
     background-color: rgba(255, 100, 100, .5);
 }
 #inputs{
@@ -281,7 +301,7 @@ body {
 }
 #eixo{
     background-color: brown;
-}
+}  */
 
 /*  Mobile CSS 
 
@@ -305,19 +325,131 @@ body {
 
 
 */
-@media only screen and (max-width: 1080px){
+@media only screen and (max-width: 768px){
     #mainPc{
         display: none;
     }
+    #formMainPc{
+        display: none;
+    }
+    #mainText p{
+        display: none;
+    }
+    #mainText{
+        display: none;
+    }
     #mainMobile{
-        display: block;
+        background-image: linear-gradient(rgb(200,200,200), rgb(200,200,200), rgb(50,50,50));   
+        display: flex;
+        justify-content: center;
+        align-items: center;
         height: 100vh;
         width: 100vw;
     }
-
-
+    #mainMob{
+        background-image: linear-gradient(rgb(200,200,200), rgb(200,200,200), rgb(50,50,50));
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100vw;
+    }
+    #submitDiv{
+        margin-top: 50px;
+        height: 10vh;
+        width: 25vw;
+        display: flex;
+        font-size: medium;
+        justify-content: center;
+        align-items: center;
+    }
+    #inputs{
+        width: 100%;
+    }
+    #inputsSubdiv{
+        width: 90%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .textarea input{
+        font-family: "Poppins", sans-serif;
+        height: 40px;
+        font-size: 80%;
+    }
+    #subButton{
+        font-family: "Poppins", sans-serif;
+        height: 40px;
+        font-size: 100%;
+    }
     /* fazer css do mobile :) */
-
-
-
+    #input4{
+        width: 80%;
+        height: 15%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #input4 input{
+        height: 30%;
+        border-radius: 10px;
+        padding: 5px 10px 5px 10px;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    #input5 input{
+        height: 30%;
+        border-radius: 10px;
+        padding: 5px 85px 5px 10px;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    #input5{
+        width: 80%;
+        height: 15%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #input6 input{
+        height: 30%;
+        border-radius: 10px;
+        padding: 5px 85px 5px 10px;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    #input6{
+        width: 80%;
+        height: 15%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .input4div{
+        height: 100%;
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content:center;
+        align-items: center;
+    }
+    .input5div{
+        height: 100%;
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content:center;
+        align-items: center;
+    }
+    .input6div{
+        height: 100%;
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content:center;
+        align-items: center;
+    }
+    #inputTitle{
+        align-self: center;
+    }
 }

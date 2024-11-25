@@ -67,41 +67,33 @@
                         if ($result) {
                             $found = false;
                             // Use um loop para iterar sobre os resultados obtidos com o PDO
-                            if ($user == "admin1" && $pass == "admin1") {
-                                echo '<script type="text/javascript"> window.location.href="homeADM.php"; </script>';
-                            } else {
-                                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                                    $login = $row['name'];
-                                    $senha = $row['password'];
+                            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                                $login = $row['name'];
+                                $senha = $row['password'];
                                     
-                                    if ($login == $user && $senha == $pass) {
-                                        if (session_status() !== PHP_SESSION_ACTIVE) {
-                                            session_start();
-                                        }
-                                        $_SESSION['username'] = $login;
-                                        $found = true;
-                                        echo '<script type="text/javascript"> window.location.href="home.php"; </script>';
-                                        echo "found";
-                                        break;
+                                if ($login == $user && $senha == $pass) {
+                                    if (session_status() !== PHP_SESSION_ACTIVE) {
+                                        session_start();
                                     }
-                                }
-                                if (!$found) {
-                                    echo '<script>alert("Verifique suas credenciais e tente novamente");</script>';
-                                } else {
-                                    // Trate o caso em que a consulta não retornou resultados
-                                    echo "Nenhum resultado encontrado.";
+                                    $_SESSION['username'] = $login;
+                                    $found = true;
+                                    echo '<script type="text/javascript"> window.location.href="mainMenu.php"; </script>';
+                                    echo "found";
+                                    break;
                                 }
                             }
+                            if (!$found) {
+                                echo '<script>alert("Verifique suas credenciais e tente novamente");</script>';
+                            } else {
+                                // Trate o caso em que a consulta não retornou resultados
+                                echo "Nenhum resultado encontrado.";
+                            }
                         }
+                    }
 
 
-                    }else{                                                          #
-                        echo '<script>alert("Favor inserir sua senha");</script>';  #
-                    }                                                               # Popping a message if 
-                }else{                                                              # the boxes aren't filled
-                    echo '<script>alert("Favor inserir seu e-mail");</script>';     #
-                }                                                                   #
-            }
+                }                                                             # Popping a message if 
+            }                                                                #
             
 
             ?> <!-- php closing -->
@@ -145,12 +137,12 @@
                     </div>
                 </div>
         </div>    
-            <?php # php openning
-            if (isset($_POST['subButton'])){           #
-                if($_POST['loginText'] != ""){         # Checking if the textboxes are filled
-                    if($_POST['passwordText'] != ""){  #
+        <?php # php openning
+            if (isset($_POST['subButton'])) {           #
+                if ($_POST['loginText'] != "") {         # Checking if the textboxes are filled
+                    if ($_POST['passwordText'] != "") {  #
                         #write the code here
-                        
+
                         $crud = new Crud($db);
                         $result = $crud->read();
 
@@ -160,41 +152,35 @@
                         if ($result) {
                             $found = false;
                             // Use um loop para iterar sobre os resultados obtidos com o PDO
-                            if ($user == "admin1" && $pass == "admin1") {
-                                echo '<script type="text/javascript"> window.location.href="homeADM.php"; </script>';
-                            } else {
-                                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                                    $login = $row['name'];
-                                    $senha = $row['password'];
-                                    if ($login == $user && $senha == $pass) {
-                                        if (session_status() !== PHP_SESSION_ACTIVE) {
-                                            session_start();
-                                        }
-                                        $_SESSION['username'] = $login;
-                                        $found = true;
-                                        echo '<script type="text/javascript"> window.location.href="home.php"; </script>';
-                                        echo "found";
-                                        break;
-                                    }
-                                }
-                                if (!$found) {
-                                    echo '<script>alert("Verifique suas credenciais e tente novamente");</script>';
-                                } else {
-                                    // Trate o caso em que a consulta não retornou resultados
-                                    echo "Nenhum resultado encontrado.";
+                            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                                $login = $row['name'];
+                                $senha = $row['password'];
+                                $admin = $row['isAdmin'];
+                                $id = $row['userId'];
+                                if ($login == $user && $senha == $pass) {
+                                    session_start();
+                                    $_SESSION["id"] = $id;
+                                    $_SESSION["login"] = $login;
+                                    $_SESSION["admin"] = $admin;
+
+                                    $found = true;
+                                    echo '<script type="text/javascript"> window.location.href="mainMenu.php"; </script>';
+
+                                    echo "found";
+                                    break;
                                 }
                             }
+                            if (!$found) {
+                                echo '<script>alert("Verifique suas credenciais e tente novamente");</script>';
+                            } else {
+                                // Trate o caso em que a consulta não retornou resultados
+                                echo "Nenhum resultado encontrado.";
+                            }
                         }
+                    }
+                }                                                             # Popping a message if 
+            }                                                                 #
 
-
-                    }else{                                                          #
-                        echo '<script>alert("Favor inserir sua senha");</script>';  #
-                    }                                                               # Popping a message if 
-                }else{                                                              # the boxes aren't filled
-                    echo '<script>alert("Favor inserir seu e-mail");</script>';     #
-                }                                                                   #
-            }
-            
 
             ?> <!-- php closing -->
 
