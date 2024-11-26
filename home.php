@@ -168,6 +168,7 @@ if (isset($_POST['subButton'])){
     $date = $_POST['dateText'];
 
     $crud->insertTruck($driver, $model, $plate, $axels, $weight, $tecnico);
+    $crud->insertManutencao($plate, $tecnico, $date);
     echo'<script>alert("enviado para o banco de dados")</script>';
     $count = 1;
     while(True){

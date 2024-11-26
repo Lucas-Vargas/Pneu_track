@@ -61,15 +61,14 @@ if (session_status() != PHP_SESSION_ACTIVE) {
 
 
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-          $id = $row['tireId'];
           echo "<div class='trucks'>";
           echo "<h1 class='titulo'>Placa<h2>" . $row['plate'] . "</h1></h2>";
           echo "<h1 class='titulo'> Modelo <h2>" . $row['model'] . "</h1></h2>";
           echo "<div class='btnsTruck'>";
           echo "<td><a href='editar.php?id=" . $row['plate'] . "'>Editar</a> |
-           <a  href='deletarTruck.php?plate=" . $row['plate'] . "' class='delete';>Deletar</a></td>";
+          <td><a href='historico.php?plate=" . $row['plate'] . "'>Histórico</a> |
+         <a  href='deletarTruck.php?plate=" . $row['plate'] . "' class='delete';>Deletar</a></td>";
           echo "</div>";
-
           echo "</div>";
         }
       } else {
@@ -79,14 +78,11 @@ if (session_status() != PHP_SESSION_ACTIVE) {
 
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
 
-          $id = $row['tireId'];
-          $truckId = $row['plate'];
-          $_SESSION['truckId'] = $truckId;
           echo "<div class='trucks'>";
           echo "<h1 class='titulo'>Placa<h2>" . $row['plate'] . "</h1></h2>";
           echo "<h1 class='titulo'> Modelo <h2>" . $row['model'] . "</h1></h2>";
           echo "<div class='btnsTruck'>";
-          echo "<td><a href='editar.php?id=" . $truckId . "'>Editar</a></td>";
+          echo "<td><a href='editar.php?id=" . $row['id'] . "'>Editar</a></td>";
           echo "</div>";
 
           echo "</div>";
@@ -133,13 +129,12 @@ if (session_status() != PHP_SESSION_ACTIVE) {
 
 
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-
-          $id = $row['tireId'];
           echo "<div class='trucks'>";
           echo "<h1 class='titulo'>Placa<h2>" . $row['plate'] . "</h1></h2>";
           echo "<h1 class='titulo'> Modelo <h2>" . $row['model'] . "</h1></h2>";
           echo "<div class='btnsTruck'>";
           echo "<td><a href='editar.php?id=" . $row['plate'] . "'>Editar</a> |
+          <td><a href='historico.php?id=" . $row['plate'] . "'>HIstórico</a> |
      <a  href='deletarTruck.php?plate=" . $row['plate'] . "' class='delete';>Deletar</a></td>";
           echo "</div>";
 
@@ -152,12 +147,13 @@ if (session_status() != PHP_SESSION_ACTIVE) {
 
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
 
-          $id = $row['tireId'];
+
           echo "<div class='trucks'>";
           echo "<h1 class='titulo'>Placa<h2>" . $row['plate'] . "</h1></h2>";
           echo "<h1 class='titulo'> Modelo <h2>" . $row['model'] . "</h1></h2>";
           echo "<div class='btnsTruck'>";
-          echo "<td><a href='editar.php?id=" . $row['id'] . "'>Editar</a></td>";
+          echo "<td><a href='editar.php?id=" . $row['id'] . "'>Editar</a></td> |
+          <td><a href='historico.php?id=" . $row['plate'] . "'>HIstórico</a> |";
           echo "</div>";
 
           echo "</div>";

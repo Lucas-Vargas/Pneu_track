@@ -23,7 +23,7 @@ class Crud
     }
 
 
-    public function insertTruck($driver, $model, $plate, $axels, $weight, $tecnico)
+    public function insertTruck($driver, $model, $plate, $axels, $weight)
     {
         $query = "INSERT into pneutrackdb.truck (`plate`, `model`, `driver`, `axels`, `weight`) VALUES (:plate, :model, :driver, :axels, :weight);";
         $stmt = $this->conn->prepare($query);
@@ -70,7 +70,7 @@ class Crud
 
     public function readPneus()
     {
-        $query = "SELECT * FROM pneutrackdb.truck as t join pneutrackdb.tire as p, pneutrackdb.recapdate r;";
+        $query = "SELECT * FROM pneutrackdb.truck";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         return $stmt;
@@ -82,6 +82,26 @@ class Crud
         $stmt = $this->conn->prepare($query);
         $stmt->execute() or die(error_log($stmt));
     }
+
+    public function insertManutencao($plate, $tecnico,$date)
+    {
+        $query = "INSERT into pneutrackdb.manutencao (`tecnico`, `fktruck`, `date`) VALUES (:tecnico, :plate ,:date);";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':plate', $plate);
+        $stmt->bindParam(':tecnico', $tecnico);
+        $stmt->bindParam(':date', $date);
+        $stmt->execute();
+        return $stmt;
+    }
+
+    public function readManutencoes($plate)
+    {
+        $query = "SELECT * FROM pneutrackdb.manutencao WHERE fktruck='$plate' ";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        return $stmt;
+    }
+
 
 
 
