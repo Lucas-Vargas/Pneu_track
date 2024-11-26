@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style2.css">
-    <title>Login Screen</title>
+    <title>Cadastro</title>
 </head>
 <body>
 
@@ -38,7 +38,7 @@
                 <div id="inputsSubdiv">
 
                 <div id="inputTitle">
-                    <h1>Cadastro de Pneu</h1>
+                    <h1>Cadastro</h1>
                 </div>
 <!------------------------------------------------------------------------------------------------->
                 <div id="input1">
@@ -86,7 +86,7 @@
     var myTextbox = document.getElementById('eixoText');
     var numEixos = myTextbox.value;
     myTextbox.onchange = function() {
-        numEixos = myTextbox.value;
+        numEixos = document.getElementById('eixoText').value;
         let eixoCount = 0;
         for (let i = 1; i < (numEixos * 2 + 1); i++) {
             const div = document.createElement("div");
@@ -174,14 +174,11 @@ if (isset($_POST['subButton'])){
         try{
             $km = $_POST['kmText'. $count];
             $recap = $_POST['recapText'. $count];
-            echo'<script>alert("'.$km.'")</script>';
             if($km == "" || $km == null || $recap == "" || $recap == null){
-                echo'<script>alert("algum valor nulo")</script>';
                 echo '<script type="text/javascript"> window.location.href="mainMenu.php"; </script>';
                 break;
             }else{
                 $crud->insertTire($km, $recap, $plate);
-                echo'<script>alert("Inserido o pneu com '.$km.'km no banco")</script>';
                 $count++;
             }
 

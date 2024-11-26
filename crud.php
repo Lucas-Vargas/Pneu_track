@@ -36,6 +36,27 @@ class Crud
         return $stmt;
     }
 
+    public function readTruck($plate)
+    {
+        $query = "SELECT * from pneutrackdb.truck WHERE plate=:plate;";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':plate', $plate);
+        $stmt->execute();
+        return $stmt;
+    }
+    public function updateTruck($driver, $model, $plate, $axels, $weight)
+    {
+        $query = "UPDATE pneutrackdb.truck set `model` = :model, `driver` = :driver, `axels` = :axels, `weight` = :weight WHERE `plate` = :plate";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':plate', $plate);
+        $stmt->bindParam(':model', $model);
+        $stmt->bindParam(':driver', $driver);
+        $stmt->bindParam(':axels', $axels);
+        $stmt->bindParam(':weight', $weight);
+        $stmt->execute();
+        return $stmt;
+    }
+
     public function insertTire($km, $recap, $truckfk)
     {
         $query = "INSERT into pneutrackdb.tire (`km`, `Recap`, `truckFk`) VALUES (:km, :recap, :truckfk);";
@@ -61,6 +82,7 @@ class Crud
         $stmt = $this->conn->prepare($query);
         $stmt->execute() or die(error_log($stmt));
     }
+
 
 
 } # end of the class

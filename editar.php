@@ -7,11 +7,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style2.css">
-    <title>Login Screen</title>
+    <link rel="stylesheet" href="css/styleEditar.css">
+    <title>Atualizar</title>
 </head>
 <body>
-
 <?php
     include_once("./db/config.php");
     include_once("./db/setDb.php");
@@ -19,6 +18,21 @@
     if (session_status() != PHP_SESSION_ACTIVE) {
         session_start();
     }
+    $truckId = $_GET['id'];
+    $crud = new Crud($db);
+    $result = $crud->readTruck($truckId);
+
+     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+
+         $model = $row['model'];
+         $driver = $row['driver'];
+         $axels = $row['axels'];
+         $weight = $row['weight'];
+       }
+
+        //↑↑↑↑ AR_Games made this ↑↑↑↑
+
+
 ?>
 
 
@@ -38,57 +52,49 @@
                 <div id="inputsSubdiv">
 
                 <div id="inputTitle">
-                    <h1>Cadastro de Pneu</h1>
+                    <h1>Editar</h1>
                 </div>
 <!------------------------------------------------------------------------------------------------->
                 <div id="input1">
                     <div class="input1div">
                         <label for="motoristaText">Motorista</label>
-                        <input type="text" name="driverText" id="motoristaText" required>
+                        <input type="text" name="driverText" id="motoristaText" required value=<?php echo $driver; ?>>
                     </div>
 
                     <div class="input1div">
                         <label for="motoristaText">Modelo</label>
-                        <input type="text" name="modeloText" id="modeloText" required>
+                        <input type="text" name="modeloText" id="modeloText" required value=<?php echo $model; ?>>
                     </div>
 
                     <div class="input1div">
                         <label for="motoristaText">Placa</label>
-                        <input type="text" name="placaText" id="placatext" required>
+                        <input type="text" name="placaText" id="placatext" readonly value=<?php echo $truckId?>>
                     </div>
                 </div>
 <!------------------------------------------------------------------------------------------------->
                 <div id="input2">
                     <div class="input2div">
                             <label for="motoristaText">Eixos</label>
-                            <input type="number" id="eixoText" name="eixoText" required>                            
+                            <input type="number" id="eixoText" name="eixoText" required value=<?php echo $axels; ?>>                            
                     </div>
 
                     <div class="input2div">
                         <label for="motoristaText">Peso</label>
-                        <input type="text" name="pesoText" id="pesoText" required>
+                        <input type="text" name="pesoText" id="pesoText" required value=<?php echo $weight; ?>>
                     </div>
 
                     <div class="input2div">
                         <label for="motoristaText">Técnico</label>
                         <input type="text" name="tecnicoText" id="tecnicoText" required>
                     </div>
-
-                    <div class="input2div">
-                        <label for="motoristaText">Data</label>
-                        <input type="date" name="dateText" id="data" required>
-                    </div>
                 </div>
-<!------------------------------------------------------------------------------------------------->
+                <div id="eixo">
 
-<div id="eixo">
+<?php echo"<script> var numEixos = ". $axels ."</script>"; ?>
 <script>
-    var myTextbox = document.getElementById('eixoText');
-    var numEixos = myTextbox.value;
-    myTextbox.onchange = function() {
-        numEixos = myTextbox.value;
         let eixoCount = 0;
         for (let i = 1; i < (numEixos * 2 + 1); i++) {
+            document.cookie = "eixoNum = " + i;
             const div = document.createElement("div");
             div.classList.add("eixoSubDiv");
             div.id = `segmento-${i}`;
@@ -133,12 +139,10 @@
             div.appendChild(recapDiv);
 
             document.getElementById("eixo").appendChild(div);
-        }
     };
 </script>
 
 </div>
-
 <!------------------------------------------------------------------------------------------------->
                     <div id="submitDiv">
                         <input type="submit" id="subButton" name="subButton">
@@ -167,16 +171,14 @@ if (isset($_POST['subButton'])){
     $tecnico = $_POST['tecnicoText'];
     $date = $_POST['dateText'];
 
-    $crud->insertTruck($driver, $model, $plate, $axels, $weight, $tecnico);
+    $crud->updateTruck($driver, $model, $plate, $axels, $weight);
     echo'<script>alert("enviado para o banco de dados")</script>';
     $count = 1;
     while(True){
         try{
             $km = $_POST['kmText'. $count];
             $recap = $_POST['recapText'. $count];
-            echo'<script>alert("'.$km.'")</script>';
             if($km == "" || $km == null || $recap == "" || $recap == null){
-                echo'<script>alert("algum valor nulo")</script>';
                 echo '<script type="text/javascript"> window.location.href="mainMenu.php"; </script>';
                 break;
             }else{
